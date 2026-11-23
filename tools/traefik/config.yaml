@@ -1,0 +1,65 @@
+http:
+  routers:
+    traefik:
+      entryPoints:
+        - websecure
+      rule: "Host(`traefik.ledgerline.dev`)"
+      service: traefik
+      tls:
+        options: ledgerline
+        domains:
+          - main: "ledgerline.dev"
+    server:
+      entryPoints:
+        - websecure
+      rule: "Host(`server.ledgerline.dev`)"
+      service: server
+      tls:
+        options: ledgerline
+        domains:
+          - main: "ledgerline.dev"
+    web:
+      entryPoints:
+        - websecure
+      rule: "Host(`app.ledgerline.dev`)"
+      service: web
+      tls:
+        options: ledgerline
+        domains:
+          - main: "ledgerline.dev"
+
+  services:
+    traefik:
+      loadbalancer:
+        servers:
+          - url: "http://localhost:9092"
+    server:
+      loadbalancer:
+        servers:
+          - url: "http://localhost:8080"
+    web:
+      loadbalancer:
+        servers:
+          - url: "http://localhost:5173"
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: ./tools/certs/ledgerline.dev.pem
+        keyFile: ./tools/certs/ledgerline.dev-key.pem
+  options:
+    ledgerline:
+      cipherSuites:
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256

@@ -1,0 +1,42 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "typescript", "jsx-a11y", "unicorn", "import", "oxc"],
+  "categories": {
+    "correctness": "error"
+  },
+  "globals": {
+    "Bun": "readonly"
+  },
+  "ignorePatterns": [
+    "apps/**/components/ui/**",
+    "**/apps/**/components/ui/**",
+    "apps/**/.dist/**",
+    "apps/**/build/**",
+    "**/apps/**/.dist/**",
+    "**/apps/**/build/**",
+    "apps/**/node_modules/**",
+    "**/apps/**/node_modules/**",
+    "node_modules/**",
+    "**/node_modules/**",
+    ".direnv/**",
+    "**/direnv/**",
+    ".devbox/**",
+    "**/devbox/**",
+    ".turbo/**",
+    "**/turbo/**"
+  ],
+  "rules": {
+    "eslint/radix": "off",
+    "react/exhaustive-deps": "off",
+    "react/no-array-index-key": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "typescript/no-extraneous-class": "off",
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ]
+  }
+}
