@@ -4,7 +4,22 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>web</title>
+    <meta name="description" content="Budget vs actual dashboard with an incremental accounting sync." />
+    <title>Ledgerline &middot; Budget vs actual</title>
+    <script>
+      // Resolve the theme before first paint, otherwise a dark-mode user gets
+      // a white flash on every load. `?theme=dark|light` wins over the stored
+      // choice, which makes a link reproducible and lets the screenshot script
+      // pin a theme without touching storage.
+      (() => {
+        const forced = new URLSearchParams(location.search).get("theme");
+        const stored = forced ?? localStorage.getItem("ledgerline.theme");
+        const dark = stored
+          ? stored === "dark"
+          : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", dark);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

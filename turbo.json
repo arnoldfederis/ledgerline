@@ -25,6 +25,12 @@
     },
     "tidy": {
       "cache": false
+    },
+    "generate": {
+      "cache": false
+    },
+    "migrate": {
+      "cache": false
     }
   }
 }

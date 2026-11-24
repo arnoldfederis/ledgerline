@@ -57,6 +57,11 @@ processes:
   server:
     command: "bun dev -F @repo/server"
     namespace: "api"
+    # The server migrates on boot and immediately runs a sync, so it must not
+    # start before PostgreSQL is accepting connections.
+    depends_on:
+      postgresql:
+        condition: "process_healthy"
     availability:
       restart: "always"
     readiness_probe:

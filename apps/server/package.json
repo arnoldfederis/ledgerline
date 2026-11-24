@@ -3,9 +3,15 @@
   "private": true,
   "scripts": {
     "dev": "go run ./cmd/server",
-    "build": "go build -o bin/server ./cmd/server",
-    "test": "go test -v ./...",
-    "format": "go fmt",
-    "tidy": "go mod tidy"
+    "build": "go build -o bin/server ./cmd/server && go build -o bin/migrate ./cmd/migrate",
+    "test": "go test ./...",
+    "lint": "go vet ./...",
+    "check-types": "go build ./...",
+    "format": "go fmt ./...",
+    "tidy": "go mod tidy",
+    "generate": "sqlc generate",
+    "migrate": "go run ./cmd/migrate up",
+    "migrate:down": "go run ./cmd/migrate down",
+    "migrate:version": "go run ./cmd/migrate version"
   }
 }
