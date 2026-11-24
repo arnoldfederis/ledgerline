@@ -13,6 +13,9 @@
     "turbo@latest",
     "bun@latest",
     "direnv@latest",
-    "watch@latest"
+    "watch@latest",
+    "go@latest",
+    "sqlc@latest",
+    "goose@latest"
   ]
 }

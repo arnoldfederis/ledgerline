@@ -8,14 +8,20 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "turbo run format",
+    "format": "turbo run format && bun run format:sql",
+    "format:sql": "bun tools/scripts/format-sql.mjs",
+    "format:sql:check": "bun tools/scripts/format-sql.mjs --check",
     "check-types": "turbo run check-types",
     "test": "turbo run test",
-    "tidy": "turbo run tidy"
+    "tidy": "turbo run tidy",
+    "generate": "turbo run generate",
+    "migrate": "turbo run migrate",
+    "screenshots": "bun tools/scripts/screenshots.mjs"
   },
   "devDependencies": {
     "oxfmt": "^0.79.0",
     "oxlint": "^1.94.0",
+    "sql-formatter": "^15.10.0",
     "turbo": "^2.11.13",
     "typescript": "7.0.2"
   },
